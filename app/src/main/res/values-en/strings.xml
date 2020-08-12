@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">GroovyMovies</string>
+    <string name="detail_button">Detail</string>
+    <string name="inviteFriend">Invite</string>
+
+    <string name="shawshank_redemption_1">The Shawshank Redemption</string>
+    <string name="shawshank_redemption_desc">Two imprisoned men bond over a number of years, finding solace and eventual redemption through acts of common decency.
+    </string>
+
+    <string name="green_mile_2">The Green Mile</string>
+    <string name="green_mile_desc">The lives of guards on Death Row are affected by one of their charges: a black man accused of child murder and rape, yet who has a mysterious gift.
+    </string>
+
+    <string name="forrest_gump_3">Forrest Gump</string>
+    <string name="forrest_gump_desc">The presidencies of Kennedy and Johnson, the events of Vietnam, Watergate and other historical events unfold through the perspective of an Alabama man with an IQ of 75, whose only desire is to be reunited with his childhood sweetheart.
+    </string>
+
+    <string name="schindlers_list_4">Schindlers List</string>
+    <string name="schindlers_list_desc">In German-occupied Poland during World War II, industrialist Oskar Schindler gradually becomes concerned for his Jewish workforce after witnessing their persecution by the Nazis.
+    </string>
+
+    <string name="intouchables_5">Intouchables</string>
+    <string name="intouchables_desc">After he becomes a quadriplegic from a paragliding accident, an aristocrat hires a young man from the projects to be his caregiver.
+    </string>
+
+    <string name="inception_6">Inception</string>
+    <string name="inception_desc">A thief who steals corporate secrets through the use of dream-sharing technology is given the inverse task of planting an idea into the mind of a C.E.O.
+    </string>
+
+    <string name="leon_7">Léon</string>
+    <string name="leon_desc">Mathilda, a 12-year-old girl, is reluctantly taken in by Léon, a professional assassin, after her family is murdered. An unusual relationship forms as she becomes his protégée and learns the assassins trade.
+    </string>
+
+    <string name="lion_king_8">The Lion King</string>
+    <string name="lion_king_desc">Lion prince Simba and his father are targeted by his bitter uncle, who wants to ascend the throne himself.
+    </string>
+
+    <string name="fight_club_9">Fight Club</string>
+    <string name="fight_club_desc">An insomniac office worker and a devil-may-care soapmaker form an underground fight club that evolves into something much, much more.
+    </string>
+
+    <string name="ivan_vasilievich_10">Ivan Vasilevich\nmenyaet professiyu</string>
+    <string name="ivan_vasilievich_desc">An ordinary Soviet building manager, living in the 20th century, is extremely similar to a Tsar of All Rus - Ivan IV the Terrible (1530-1584). He would never have known about this, but one day his neighbor created a time machine.
+    </string>
+
+    <string name="la_vita_è_bella_11">La vita è bella</string>
+    <string name="la_vita_è_bella_desc">When an open-minded Jewish librarian and his son become victims of the Holocaust, he uses a perfect mixture of will, humor, and imagination to protect his son from the dangers around their camp.
+    </string>
+
+    <string name="knockin_on_heavens_door_12">Knockin on Heavens Door</string>
+    <string name="knockin_on_heavens_door_desc">Two terminally ill patients escape from a hospital, steal a car and rush towards the sea.
+    </string>
+
+    <string name="godfather_13">The Godfather</string>
+    <string name="godfather_desc">The aging patriarch of an organized crime dynasty transfers control of his clandestine empire to his reluctant son.</string>
+
+    <string name="pulp_fiction_14">Pulp Fiction</string>
+    <string name="pulp_fiction_desc">The lives of two mob hitmen, a boxer, a gangster and his wife, and a pair of diner bandits intertwine in four tales of violence and redemption.
+    </string>
+
+    <string name="operation_y_15">Operatsiya "Y" i drugie priklyucheniya Shurika</string>
+    <string name="operation_y_desc">Three stories about Shurik - a young student. He fights against criminals, falls in love, confuses apartments, passes exams - he lives after all.
+    </string>
+
+    <string name="favoriteFilms">Favorites</string>
+    <string name="dialog_title">Do you want leave?</string>
+    <string name="dialog_confirm">Yes</string>
+    <string name="dialog_deny">No</string>
+
+    <string name="invite_message">Use the Groovy Movies app!</string>
+    <string name="add_to_favorite">added to favorite</string>
+    <string name="remove_from_favorite">removed from favorite</string>
+
+</resources>
