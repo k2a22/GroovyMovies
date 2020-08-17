@@ -3,97 +3,93 @@ package com.otus.groovymovies
 import android.app.Dialog
 import android.content.Intent
 import android.os.Bundle
-import android.view.View
-import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import androidx.recyclerview.widget.DividerItemDecoration
-import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
+import com.google.android.material.bottomnavigation.BottomNavigationView
 
-class MainActivity : AppCompatActivity() {
+
+class MainActivity : AppCompatActivity(), FilmListFragment.OnFilmClickListener {
     companion object {
         val TAG = MainActivity::class.java.simpleName
         const val KEY = "key"
     }
 
     private var items: ArrayList<FilmItem> = arrayListOf()
-    private var favoriteItems: ArrayList<FilmItem> = arrayListOf()
+    private lateinit var navigation: BottomNavigationView
+    private var menuItem = 0
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+        navigation = findViewById<BottomNavigationView>(R.id.bottom_navigation)
+        navigation.setOnNavigationItemSelectedListener {
+            return@setOnNavigationItemSelectedListener when (it.itemId) {
+                R.id.bnMain -> {
+                    openListFragment()
+                    true
+                }
+                R.id.bnFavorites -> {
+                    openFavoriteFragment(items)
+                    true
+                }
+                R.id.bnInviteFriend -> {
+                    inviteFriend()
 
-        val inviteFriendButton: View = findViewById(R.id.inviteFriend)
-        inviteFriendButton.setOnClickListener {
-            inviteFriend()
+                    false
+                }
+                else -> false
+            }
         }
 
-        val favoriteButton: View = findViewById(R.id.favoriteButton)
-        favoriteButton.setOnClickListener {
-            val intent = Intent(this@MainActivity, FavoriteActivity::class.java)
-            intent.putParcelableArrayListExtra(KEY, favoriteItems)
-            startActivity(intent)
-        }
+        openListFragment()
+    }
 
-        initList()
-        initRecycler()
+    private fun openListFragment() {
+        supportFragmentManager
+            .beginTransaction()
+            .replace(R.id.fragmentContainer, FilmListFragment(), FilmListFragment.TAG)
+            .commit()
+    }
+
+    private fun openDetailedFragment(filmItem: FilmItem) {
+        supportFragmentManager
+            .beginTransaction()
+            .replace(
+                R.id.fragmentContainer,
+                FilmDetailedFragment.newInstance(filmItem),
+                FilmDetailedFragment.TAG
+            )
+            .addToBackStack(FilmDetailedFragment.TAG)
+            .commit()
+    }
+
+    private fun openFavoriteFragment(items: ArrayList<FilmItem>) {
+        supportFragmentManager
+            .beginTransaction()
+            .replace(
+                R.id.fragmentContainer,
+                FavoriteListFragment.newInstance(items),
+                FavoriteListFragment.TAG
+            )
+            .addToBackStack(FavoriteListFragment.TAG)
+            .commit()
     }
 
     @Override
     override fun onBackPressed() {
-        val dialog: Dialog = CustomDialog(this, object : CustomDialog.DialogClickListener {
-            override fun confirmClickListener() {
-                finish()
-            }
-
-            override fun denyClickListener() {
-            }
-        })
-        dialog.show()
-    }
-
-    private fun initRecycler() {
-        val layoutManager = LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false)
-        val recyclerView = findViewById<RecyclerView>(R.id.recyclerView)
-        recyclerView.layoutManager = layoutManager
-
-        recyclerView.adapter = FilmAdapter(items, object : FilmAdapter.FilmItemListener {
-            override fun onFavoriteClickListener(filmItem: FilmItem) {
-                if (!favoriteItems.contains(filmItem)) {
-                    favoriteItems.add(filmItem)
-                    Toast.makeText(
-                        this@MainActivity,
-                        "${filmItem.title} " + resources.getString(R.string.add_to_favorite),
-                        Toast.LENGTH_SHORT
-                    ).show()
-                } else {
-                    favoriteItems.remove(filmItem)
-                    Toast.makeText(
-                        this@MainActivity,
-                        "${filmItem.title} " + resources.getString(R.string.remove_from_favorite),
-                        Toast.LENGTH_SHORT
-                    ).show()
+        if (supportFragmentManager.backStackEntryCount > 0) {
+            supportFragmentManager.popBackStack()
+            navigation.selectedItemId = R.id.bnMain
+        } else {
+            val dialog: Dialog = CustomDialog(this, object : CustomDialog.DialogClickListener {
+                override fun confirmClickListener() {
+                    finish()
                 }
-            }
 
-            override fun onDetailClickListener(filmItem: FilmItem) {
-                val intent = Intent(this@MainActivity, DetailActivity::class.java)
-                intent.putExtra(KEY, filmItem)
-                startActivity(intent)
-            }
-        })
-
-        recyclerView.addOnScrollListener(object : RecyclerView.OnScrollListener() {
-            override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
-                if (layoutManager.findLastVisibleItemPosition() == items.size) {
-                    itemLoader()
-                    recyclerView.adapter?.notifyItemRangeInserted(items.size + 1, 9)
+                override fun denyClickListener() {
                 }
-            }
-        })
-
-        val itemDecorator = DividerItemDecoration(this, DividerItemDecoration.VERTICAL)
-        recyclerView.addItemDecoration(itemDecorator)
+            })
+            dialog.show()
+        }
     }
 
     private fun inviteFriend() {
@@ -109,115 +105,17 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-    private fun initList() {
-        items.add(
-            FilmItem(
-                resources.getString(R.string.shawshank_redemption_1),
-                resources.getString(R.string.shawshank_redemption_desc),
-                R.drawable.shawshank_redemption
-            )
-        )
-        items.add(
-            FilmItem(
-                resources.getString(R.string.green_mile_2),
-                resources.getString(R.string.green_mile_desc),
-                R.drawable.green_mile
-            )
-        )
-        items.add(
-            FilmItem(
-                resources.getString(R.string.forrest_gump_3),
-                resources.getString(R.string.forrest_gump_desc),
-                R.drawable.forrest_gump
-            )
-        )
-        items.add(
-            FilmItem(
-                resources.getString(R.string.schindlers_list_4),
-                resources.getString(R.string.schindlers_list_desc),
-                R.drawable.schindlers_list
-            )
-        )
-        items.add(
-            FilmItem(
-                resources.getString(R.string.intouchables_5),
-                resources.getString(R.string.intouchables_desc),
-                R.drawable.intouchables
-            )
-        )
-        items.add(
-            FilmItem(
-                resources.getString(R.string.inception_6),
-                resources.getString(R.string.inception_6),
-                R.drawable.inception
-            )
-        )
-
+    override fun onDetailedClick(filmItem: FilmItem) {
+        openDetailedFragment(filmItem)
     }
 
-    private fun itemLoader() {
-        items.add(
-            FilmItem(
-                resources.getString(R.string.leon_7),
-                resources.getString(R.string.leon_desc),
-                R.drawable.leon
-            )
-        )
-        items.add(
-            FilmItem(
-                resources.getString(R.string.lion_king_8),
-                resources.getString(R.string.lion_king_desc),
-                R.drawable.lion_king
-            )
-        )
-        items.add(
-            FilmItem(
-                resources.getString(R.string.fight_club_9),
-                resources.getString(R.string.fight_club_desc),
-                R.drawable.fight_club
-            )
-        )
-        items.add(
-            FilmItem(
-                resources.getString(R.string.ivan_vasilievich_10),
-                resources.getString(R.string.ivan_vasilievich_desc),
-                R.drawable.ivan_vasilievich
-            )
-        )
-        items.add(
-            FilmItem(
-                resources.getString(R.string.la_vita_è_bella_11),
-                resources.getString(R.string.la_vita_è_bella_desc),
-                R.drawable.la_vita_e_bella
-            )
-        )
-        items.add(
-            FilmItem(
-                resources.getString(R.string.knockin_on_heavens_door_12),
-                resources.getString(R.string.knockin_on_heavens_door_desc),
-                R.drawable.knockin_on_heavens_door
-            )
-        )
-        items.add(
-            FilmItem(
-                resources.getString(R.string.godfather_13),
-                resources.getString(R.string.godfather_desc),
-                R.drawable.godfather
-            )
-        )
-        items.add(
-            FilmItem(
-                resources.getString(R.string.pulp_fiction_14),
-                resources.getString(R.string.pulp_fiction_desc),
-                R.drawable.pulp_fiction
-            )
-        )
-        items.add(
-            FilmItem(
-                resources.getString(R.string.operation_y_15),
-                resources.getString(R.string.operation_y_desc),
-                R.drawable.operation_y
-            )
-        )
+    override fun onFavoriteClick(filmItem: FilmItem): Boolean {
+        return if (items.contains(filmItem)) {
+            false
+        } else {
+            items.add(filmItem)
+            true
+        }
     }
+
 }

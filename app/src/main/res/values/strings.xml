@@ -2,6 +2,8 @@
     <string name="app_name">GroovyMovies</string>
     <string name="detail_button">Детали</string>
     <string name="inviteFriend">Пригласить друга</string>
+    <string name="main">Главное</string>
+    <string name="favorites">Избранное</string>
 
     <string name="shawshank_redemption_1">Побег из Шоушенка</string>
     <string name="shawshank_redemption_desc">Бухгалтер Энди Дюфрейн обвинён в убийстве собственной жены и её любовника. Оказавшись в тюрьме под названием Шоушенк, он сталкивается с жестокостью и беззаконием, царящими по обе стороны решётки. Каждый, кто попадает в эти стены, становится их рабом до конца жизни. Но Энди, обладающий живым умом и доброй душой, находит подход как к заключённым, так и к охранникам, добиваясь их особого к себе расположения.
@@ -64,11 +66,14 @@
     </string>
     <string name="favoriteFilms">Избранное</string>
     <string name="dialog_title">Вы хотите выйти?</string>
-    <string name="dialog_confirm">Да</string>
-    <string name="dialog_deny">Нет</string>
+    <string name="yes">Да</string>
+    <string name="no">Нет</string>
+    <string name="undo">Отменить</string>
 
     <string name="invite_message">Воспользуйся приложением Groovy Movies!</string>
-    <string name="add_to_favorite">добавлен в избранное</string>
-    <string name="remove_from_favorite">удален из избранного</string>
+    <string name="add_to_favorites">добавлен в избранное</string>
+    <string name="remove_from_favorites">удален из избранного</string>
+    <string name="remove_question">удален из избранного</string>
+    <string name="already_in_favorites">уже в избранном</string>
 
 </resources>
