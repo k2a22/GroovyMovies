@@ -3,6 +3,8 @@
     <string name="app_name">GroovyMovies</string>
     <string name="detail_button">Detail</string>
     <string name="inviteFriend">Invite</string>
+    <string name="main">Main</string>
+    <string name="favorites">Favorites</string>
 
     <string name="shawshank_redemption_1">The Shawshank Redemption</string>
     <string name="shawshank_redemption_desc">Two imprisoned men bond over a number of years, finding solace and eventual redemption through acts of common decency.
@@ -65,11 +67,14 @@
 
     <string name="favoriteFilms">Favorites</string>
     <string name="dialog_title">Do you want leave?</string>
-    <string name="dialog_confirm">Yes</string>
-    <string name="dialog_deny">No</string>
+    <string name="yes">Yes</string>
+    <string name="no">No</string>
+    <string name="undo">Undo</string>
 
     <string name="invite_message">Use the Groovy Movies app!</string>
-    <string name="add_to_favorite">added to favorite</string>
-    <string name="remove_from_favorite">removed from favorite</string>
+    <string name="add_to_favorites">added to favorite</string>
+    <string name="remove_from_favorites">removed from favorite</string>
+    <string name="remove_question">is removed from favorites</string>
+    <string name="already_in_favorites">already in favorites</string>
 
 </resources>

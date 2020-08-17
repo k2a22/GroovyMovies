@@ -21,7 +21,6 @@ class FilmAdapter(
         } else {
             FooterViewHolder(inflater.inflate(R.layout.item_film_footer, parent, false))
         }
-
     }
 
     override fun getItemCount() = items.size + 1 // +1 footer
